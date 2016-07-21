@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>OKCoin Order Book</title>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <div id="chart"></div>
+                </td>
+                <td>
+                    <p>Last updated on: <span id="timestamp"></span></p>
+                    <input id="update-range" type="button" value="Update X-Axis Range"/><br/>
+                    <label for="grouping-unit">Grouping Unit</label><input id="grouping-unit" type="text"/><br/>
+                    <label for="volume-unit">Volume Unit</span>
+                    <input id="volume-contracts" type="radio" name="volume"/><label for="volume-contracts">Contracts</label>
+                    <input id="volume-btc" type="radio" name="volume"/><label for="volume-btc">Bitcoin</label><br/>
+                    <label for="cumulated-volume">Cumulated Volume</label><input id="cumulated-volume" type="checkbox"/>
+                </td>
+            </tr>
+        </table>
+
+        <script src="https://code.jquery.com/jquery-3.0.0.slim.min.js" integrity="sha256-Rf4BadfyCtsvHmO89BUZcbYvNNvZvOT08ALfEzvCsD0=" crossorigin="anonymous"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/chart.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/okcoin-api/okcoin-api.js"></script>
+        <script src="js/websocket.js"></script>
+    </body>
+</html>
