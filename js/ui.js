@@ -1,6 +1,7 @@
-/* Update X-Axis Range */
-document.getElementById('update-range').onclick = function (e) {
+/* Reset axes min & max values */
+document.getElementById('reset-axes').onclick = function (e) {
     xAxisRangeNotSet = true
+    yAxisMaximum = 0
 }
 
 /* Grouping unit */
@@ -29,4 +30,28 @@ document.getElementById('cumulated-volume').onchange = function (e) {
 /* Update timestamp label */
 function updateTimestamp(timestamp) {
     document.getElementById('timestamp').textContent = new Date(parseInt(timestamp))
+}
+
+/* Added trade to the table */
+function addTrade(date, price, amount, type) {
+
+    var tr = document.createElement('tr'),
+        tdDate = document.createElement('td'),
+        tdPrice = document.createElement('td'),
+        tdAmount = document.createElement('td')
+
+    tr.className += ' ' + type
+
+    tr.appendChild(tdDate)
+    tr.appendChild(tdPrice)
+    tr.appendChild(tdAmount)
+    tradeTable.prepend(tr)
+
+    tdDate.textContent = date
+    tdPrice.textContent = price
+    tdAmount.textContent = amount
+}
+
+function setLastTrade(lastPrice, index) {
+    document.getElementById('caption').innerHTML = lastPrice + '<br>Premium: ' + (lastPrice - index).toFixed(2)
 }

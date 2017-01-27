@@ -1,14 +1,22 @@
-var groupingUnit = 0.5,
+var groupingUnit = 1,
     volumeInContracts = true,
     cumulatedVolume = false,
-    xAxisRangeNotSet = true,
+    xAxisRangeSet = false,
+    yAxisMaximum = 0,
     chart = Highcharts.chart('chart', {
         title: null,
         chart: {
-            type: 'column'
+            animation: false,
+            type: 'column',
+            spacingTop: 25,
+            spacingBottom: 10
+        },
+        credits: {
+            enabled: false
         },
         tooltip: {
-            enabled: false
+            animation: false,
+            hideDelay: 200
         },
         yAxis: {
             title: {
@@ -21,7 +29,15 @@ var groupingUnit = 0.5,
         plotOptions: {
             column: {
                 grouping: false,
-                groupPadding: 0
+                groupPadding: 0,
+                pointPadding: 0
+            },
+            series: {
+                states: {
+                    hover: {
+                        enabled: false,
+                    }
+                }
             }
         },
         series: [
@@ -32,6 +48,10 @@ var groupingUnit = 0.5,
 
 function setXAxisRange(min, max) {
     chart.xAxis[0].setExtremes(min, max)
+}
+
+function updateYAxisMaximum() {
+    chart.yAxis[0].setExtremes(0, yAxisMaximum)
 }
 
 function setTickInterval(interval) {

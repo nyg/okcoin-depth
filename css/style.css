@@ -1,0 +1,55 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Menlo, monospace;
+    font-size: 12px;
+}
+
+tr {
+    text-align: right;
+}
+
+td:nth-child(1) {
+    text-align: left;
+}
+
+.bid {
+    color: #27ae60;
+}
+
+.ask {
+    color: #e74c3c;
+}
+
+.fx-chart, .fx-trading-options {
+    border-right: 1px solid #d3d3d3;
+}
+
+.fx-trades {
+    overflow-y: auto;
+}
+
+.fx-trades, .fx-chart-options {
+    margin: 15px;
+}
+
+.fx-options {
+    border-top: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
+    font-family: sans-serif;
+}
+
+.fx-footer {
+    padding: 7px;
+    text-align: center;
+    font-family: Menlo, monospace;
+    font-size: 12px;
+}
+
+.fx-volume-unit-bitcoin, .fx-grouping-unit input {
+    text-align: right;
+}
+
+.fx-grouping-unit, .fx-volume-unit, .fx-cumulated-volume, .fx-volume-unit-contract {
+    padding-bottom: 7px;
+}

@@ -1,4 +1,5 @@
-var index = 0 // future index
+var index = 0, // future index
+    tradeTable = document.getElementById('trades')
 
 function handleIndex(message) {
     if (message.hasOwnProperty('data')) {
@@ -15,7 +16,7 @@ function handleDepth(message) {
             groupedBids = [],
             groupedAsks = []
 
-        updateTimestamp(message.data.timestamp)
+        //updateTimestamp(message.data.timestamp)
         sortAsc(bids)
         sortAsc(asks)
 
@@ -37,9 +38,15 @@ function handleDepth(message) {
             accum(groupedAsks)
         }
 
-        if (xAxisRangeNotSet) {
-            xAxisRangeNotSet = false
+        if (!xAxisRangeSet) {
+            xAxisRangeSet = true
             setXAxisRange(groupedBids[0][0] - 3, last(groupedAsks)[0] + 3)
+        }
+
+        var max = Math.max(maxVolume(groupedBids), maxVolume(groupedAsks))
+        if (max > yAxisMaximum) {
+            yAxisMaximum = max
+            updateYAxisMaximum()
         }
 
         setTickInterval(groupingUnit)
@@ -47,10 +54,34 @@ function handleDepth(message) {
     }
 }
 
+function handleTrade(message) {
+    if (message.hasOwnProperty('data')) {
+        message.data.forEach(function (trade) {
+
+            var lastPrice = parseFloat(trade[1]).toFixed(2)
+
+            addTrade(
+                trade[3],
+                lastPrice,
+                parseInt(trade[2]),
+                trade[4])
+
+            setLastTrade(lastPrice, index)
+        })
+    }
+}
+
 var api = new OKCoin('com', {
     ok_sub_futureusd_btc_index: handleIndex,
-    ok_sub_futureusd_btc_depth_quarter_60: handleDepth
+    ok_sub_futureusd_btc_depth_quarter_60: handleDepth,
+    ok_sub_futureusd_btc_trade_quarter: handleTrade
 }).start()
+
+/*
+var api = new OKCoin('cn', {
+    ok_sub_spotcny_btc_depth_60: handleDepth
+}).start()
+*/
 
 function group(from, into) {
 
@@ -78,6 +109,18 @@ function accum(array, reverse) {
     for (var i = start; reverse ? i > end : i < end; i += step) {
         array[i][1] += array[i - step][1]
     }
+}
+
+function maxVolume(array) {
+
+    var max = 0, i = 0
+    for (i = 0; i < array.length; ++i) {
+        if (array[i][1] > max) {
+            max = array[i][1]
+        }
+    }
+
+    return max
 }
 
 function toVolume(contracts) {

@@ -3,27 +3,55 @@
     <head>
         <meta charset="utf-8">
         <title>OKCoin Order Book</title>
+        <link rel="stylesheet" href="flex.css" type="text/css"/>
         <link rel="stylesheet" href="style.css" type="text/css"/>
     </head>
     <body>
-        <table>
-            <tr>
-                <td>
-                    <div id="chart"></div>
-                </td>
-                <td>
-                    <p>Last updated on: <span id="timestamp"></span></p>
-                    <input id="update-range" type="button" value="Update X-Axis Range"/><br/>
-                    <label for="grouping-unit">Grouping Unit</label><input id="grouping-unit" type="text"/><br/>
-                    <label for="volume-unit">Volume Unit</span>
-                    <input id="volume-contracts" type="radio" name="volume"/><label for="volume-contracts">Contracts</label>
-                    <input id="volume-btc" type="radio" name="volume"/><label for="volume-btc">Bitcoin</label><br/>
-                    <label for="cumulated-volume">Cumulated Volume</label><input id="cumulated-volume" type="checkbox"/>
-                </td>
-            </tr>
-        </table>
+        <!--<p>Last updated on: <span id="timestamp"></span></p>-->
+        <div class="fx-main">
+            <div class="fx-chart-trades">
+                <div class="fx-chart" id="chart"></div>
+                <div class="fx-trades">
+                    <table>
+                        <caption id="caption"></caption>
+                        <tbody id="trades"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="fx-options">
+                <div class="fx-trading-options">
+                </div>
+                <div class="fx-chart-options">
+                    <div class="fx-grouping-unit">
+                        <label for="grouping-unit">Grouping Unit</label>
+                        <input id="grouping-unit" type="text" size="11"/>
+                    </div>
+                    <div class="fx-volume-unit">
+                        <label for="volume-unit">Volume Unit</label>
+                        <div class="fx-volume-unit-choice">
+                            <div class="fx-volume-unit-contract">
+                                <label for="volume-contracts">Contract</label>
+                                <input id="volume-contracts" type="radio" name="volume"/>
+                            </div>
+                            <div class="fx-volume-unit-bitcoin">
+                                <label for="volume-btc">Bitcoin</label>
+                                <input id="volume-btc" type="radio" name="volume"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fx-cumulated-volume">
+                        <label for="cumulated-volume">Cumulated Volume</label>
+                        <input id="cumulated-volume" type="checkbox"/>
+                    </div>
+                    <input id="reset-axes" type="button" value="Reset Axes"/>
+                </div>
+            </div>
+            <div class="fx-footer">
+                <a href="https://nyg.github.io">home</a> - <a href="https://github.com/nyg/okcoin-depth">github</a>
+            </div>
+        </div>
 
-        <script src="https://code.jquery.com/jquery-3.0.0.slim.min.js" integrity="sha256-Rf4BadfyCtsvHmO89BUZcbYvNNvZvOT08ALfEzvCsD0=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="js/util.js"></script>
         <script src="js/chart.js"></script>

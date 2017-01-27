@@ -1,0 +1,77 @@
+/* General */
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* Main three "rows" */
+
+.fx-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.fx-chart-trades {
+    display: flex;
+    flex: 1;
+}
+
+.fx-options {
+    display: flex;
+    flex: 0 0 200px;
+}
+
+.fx-footer {
+    flex: 0 0 auto;
+}
+
+/* Cells */
+
+.fx-chart {
+    flex: 1;
+}
+
+.fx-trades, .fx-chart-options {
+    flex: 0 0 300px;
+}
+
+.fx-trading-options {
+    flex: 1;
+}
+
+.fx-chart-options {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chart options form */
+
+.fx-grouping-unit {
+    display: flex;
+}
+
+.fx-grouping-unit label {
+    flex: 1;
+}
+
+.fx-volume-unit {
+    display: flex;
+}
+
+.fx-volume-unit label {
+    flex: 1;
+}
+
+.fx-cumulated-volume {
+    display: flex;
+}
+
+.fx-cumulated-volume label {
+    flex: 1;
+}
