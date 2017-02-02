@@ -16,7 +16,6 @@ function handleDepth(message) {
             groupedBids = [],
             groupedAsks = []
 
-        //updateTimestamp(message.data.timestamp)
         sortAsc(bids)
         sortAsc(asks)
 
@@ -71,17 +70,9 @@ function handleTrade(message) {
     }
 }
 
-var api = new OKCoin('com', {
-    ok_sub_futureusd_btc_index: handleIndex,
-    ok_sub_futureusd_btc_depth_quarter_60: handleDepth,
-    ok_sub_futureusd_btc_trade_quarter: handleTrade
-}).start()
-
-/*
-var api = new OKCoin('cn', {
-    ok_sub_spotcny_btc_depth_60: handleDepth
-}).start()
-*/
+function handleUserInfo(message) {
+    console.log(message)
+}
 
 function group(from, into) {
 

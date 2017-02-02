@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
     </head>
     <body>
-        <!--<p>Last updated on: <span id="timestamp"></span></p>-->
         <div class="fx-main">
             <div class="fx-chart-trades">
                 <div class="fx-chart" id="chart"></div>
@@ -20,6 +19,14 @@
             </div>
             <div class="fx-options">
                 <div class="fx-trading-options">
+                    <div class="fx-api-key">
+                        <label for="api-key">API Key</label>
+                        <input id="api-key" type="text" size="1">
+                    </div>
+                    <div class="fx-secret-key">
+                        <label for="secret-key">Secret Key</label>
+                        <input id="secret-key" type="text" size="1">
+                    </div>
                 </div>
                 <div class="fx-chart-options">
                     <div class="fx-grouping-unit">
@@ -53,10 +60,13 @@
 
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="js/spark-md5.min.js"></script>
+        <script src="js/local-storage.js"></script>
         <script src="js/util.js"></script>
         <script src="js/chart.js"></script>
         <script src="js/ui.js"></script>
         <script src="js/okcoin-api/okcoin-api.js"></script>
-        <script src="js/websocket.js"></script>
+        <script src="js/order-book.js"></script>
+        <script src="js/controller.js"></script>
     </body>
 </html>

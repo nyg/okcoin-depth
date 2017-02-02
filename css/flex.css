@@ -38,16 +38,32 @@ html, body {
 }
 
 .fx-trades, .fx-chart-options {
-    flex: 0 0 300px;
+    flex: 0 0 250px;
 }
 
 .fx-trading-options {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .fx-chart-options {
     display: flex;
     flex-direction: column;
+}
+
+/* Trading options form */
+
+.fx-api-key, .fx-secret-key {
+    display: flex;
+}
+
+.fx-api-key label, .fx-secret-key label {
+    flex-basis: 100px;
+}
+
+.fx-api-key input, .fx-secret-key input {
+    flex: 1;
 }
 
 /* Chart options form */

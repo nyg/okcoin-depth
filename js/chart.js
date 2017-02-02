@@ -1,4 +1,4 @@
-var groupingUnit = 1,
+var groupingUnit = .5,
     volumeInContracts = true,
     cumulatedVolume = false,
     xAxisRangeSet = false,

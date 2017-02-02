@@ -1,6 +1,29 @@
+function id(elementId) {
+    return document.getElementById(elementId)
+}
+
+['api-key', 'secret-key'].forEach(function (e) {
+    id(e).onchange = function (event) {
+        storeValue(e, event.target.value)
+    }
+})
+
+/* API Key */
+
+/* Secret Key */
+id('secret-key').onchange = function (e) {
+    storeValue('secret-key', e.target.value)
+}
+
+function restoreKeys() {
+    ['api-key', 'secret-key'].forEach(function (e) {
+        id(e).value = getStoredValue(e)
+    })
+}
+
 /* Reset axes min & max values */
 document.getElementById('reset-axes').onclick = function (e) {
-    xAxisRangeNotSet = true
+    xAxisRangeSet = false
     yAxisMaximum = 0
 }
 

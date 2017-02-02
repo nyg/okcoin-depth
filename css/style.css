@@ -1,3 +1,23 @@
+/* General stuff */
+
+.fx-chart, .fx-trading-options {
+    border-right: 1px solid #d3d3d3;
+}
+
+.fx-trades, .fx-trading-options, .fx-chart-options {
+    padding: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="text"] {
+    text-align: right;
+}
+
+/* Trades table */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -13,6 +33,10 @@ td:nth-child(1) {
     text-align: left;
 }
 
+.fx-trades {
+    overflow-y: auto;
+}
+
 .bid {
     color: #27ae60;
 }
@@ -21,16 +45,9 @@ td:nth-child(1) {
     color: #e74c3c;
 }
 
-.fx-chart, .fx-trading-options {
-    border-right: 1px solid #d3d3d3;
-}
+/**/
 
-.fx-trades {
-    overflow-y: auto;
-}
-
-.fx-trades, .fx-chart-options {
-    margin: 15px;
+.fx-trading-options input {
 }
 
 .fx-options {
@@ -46,10 +63,10 @@ td:nth-child(1) {
     font-size: 12px;
 }
 
-.fx-volume-unit-bitcoin, .fx-grouping-unit input {
+.fx-volume-unit-choice {
     text-align: right;
 }
 
-.fx-grouping-unit, .fx-volume-unit, .fx-cumulated-volume, .fx-volume-unit-contract {
+.fx-api-key, .fx-secret-key, .fx-grouping-unit, .fx-volume-unit, .fx-cumulated-volume, .fx-volume-unit-contract {
     padding-bottom: 7px;
 }
