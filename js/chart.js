@@ -29,6 +29,7 @@ var groupingUnit = .5,
         plotOptions: {
             column: {
                 grouping: false,
+                pointPlacement: 'between',
                 groupPadding: 0,
                 pointPadding: 0
             },

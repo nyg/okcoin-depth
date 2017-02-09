@@ -53,27 +53,6 @@ function handleDepth(message) {
     }
 }
 
-function handleTrade(message) {
-    if (message.hasOwnProperty('data')) {
-        message.data.forEach(function (trade) {
-
-            var lastPrice = parseFloat(trade[1]).toFixed(2)
-
-            addTrade(
-                trade[3],
-                lastPrice,
-                parseInt(trade[2]),
-                trade[4])
-
-            setLastTrade(lastPrice, index)
-        })
-    }
-}
-
-function handleUserInfo(message) {
-    console.log(message)
-}
-
 function group(from, into) {
 
     var j = 0, volume
@@ -133,4 +112,12 @@ function sortAsc(array) {
     array.sort(function (a, b) {
         return a[0] - b[0]
     })
+}
+
+function floor(number, unit) {
+    return parseFloat((Math.floor(number / unit) * unit).toFixed(2))
+}
+
+function last(array) {
+    return array[array.length - 1]
 }

@@ -1,11 +1,18 @@
-function storeValue(key, value) {
-    if (typeof Storage !== "undefined") {
-        localStorage.setItem(key, value)
-    }
-}
+var jsDao = (function () {
 
-function getStoredValue(key, defaultValue) {
-    if (typeof Storage !== "undefined") {
-        return localStorage.getItem(key) || defaultValue
+    var jsDao = {}
+
+    jsDao.set = function (key, value) {
+        if (typeof Storage !== "undefined") {
+            localStorage.setItem(key, value)
+        }
     }
-}
+
+    jsDao.get = function (key, defaultValue) {
+        if (typeof Storage !== "undefined") {
+            return localStorage.getItem(key) || defaultValue
+        }
+    }
+
+    return jsDao
+})()
