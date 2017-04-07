@@ -9,48 +9,56 @@ function handleIndex(message) {
 
 function handleDepth(message) {
 
-    if (message.hasOwnProperty('data')) {
+    var bids = clean(message.data.bids),
+        asks = clean(message.data.asks),
+        groupedBids = [],
+        groupedAsks = []
 
-        var bids = message.data.bids,
-            asks = message.data.asks,
-            groupedBids = [],
-            groupedAsks = []
+    if (groupingUnit > 0) {
+        group(bids, groupedBids)
+        group(asks, groupedAsks)
 
-        sortAsc(bids)
-        sortAsc(asks)
-
-        if (groupingUnit != 0) {
-            group(bids, groupedBids)
-            group(asks, groupedAsks)
-
-            if (isVolumeDifferent(bids, groupedBids) || isVolumeDifferent(asks, groupedAsks)) {
-                console.log('Houston, we have a problem!')
-            }
+        if (isVolumeDifferent(bids, groupedBids) || isVolumeDifferent(asks, groupedAsks)) {
+            console.log('Houston, we have a problem!')
         }
-        else {
-            groupedBids = bids
-            groupedAsks = asks
-        }
-
-        if (cumulatedVolume) {
-            accum(groupedBids, true)
-            accum(groupedAsks)
-        }
-
-        if (!xAxisRangeSet) {
-            xAxisRangeSet = true
-            setXAxisRange(groupedBids[0][0] - 3, last(groupedAsks)[0] + 3)
-        }
-
-        var max = Math.max(maxVolume(groupedBids), maxVolume(groupedAsks))
-        if (max > yAxisMaximum) {
-            yAxisMaximum = max
-            updateYAxisMaximum()
-        }
-
-        setTickInterval(groupingUnit)
-        setData(groupedBids, groupedAsks)
     }
+    else {
+        groupedBids = bids
+        groupedAsks = asks
+    }
+
+    if (cumulatedVolume) {
+        accum(groupedBids, true)
+        accum(groupedAsks)
+    }
+
+    if (!xAxisRangeSet) {
+        xAxisRangeSet = true
+        setXAxisRange(groupedBids[0][0] - 3, last(groupedAsks)[0] + 3)
+    }
+
+    var max = Math.max(maxVolume(groupedBids), maxVolume(groupedAsks))
+    if (max > yAxisMaximum) {
+        yAxisMaximum = max
+        updateYAxisMaximum()
+    }
+
+    setTickInterval(groupingUnit)
+    setData(groupedBids, groupedAsks)
+}
+
+// parse numbers, remove useless data, reverse order
+function clean(array) {
+
+    var cleaned = [],
+        volumeIndex = volumeInContracts ? 1 : 2,
+        parseVolume = volumeInContracts ? parseInt : parseFloat
+
+    for (var i = array.length - 1, j = 0; i >= 0; --i, ++j) {
+        cleaned[j] = [ parseFloat(array[i][0]), parseVolume(array[i][volumeIndex]) ]
+    }
+
+    return cleaned
 }
 
 function group(from, into) {
@@ -60,7 +68,7 @@ function group(from, into) {
 
         volume = 0
         while (j < from.length && floor(from[j][0], groupingUnit) == parseFloat(i.toFixed(2))) {
-            volume += toVolume(from[j][1])
+            volume += from[j][1]
             j++
         }
 
@@ -93,10 +101,6 @@ function maxVolume(array) {
     return max
 }
 
-function toVolume(contracts) {
-    return volumeInContracts ? contracts : (100 * contracts / index)
-}
-
 function isVolumeDifferent(a, b) {
     return sum(a) != sum(b)
 }
@@ -106,12 +110,6 @@ function sum(a) {
     for (var i = 0; i < a.length; i++) {
         sum += a[i][1]
     }
-}
-
-function sortAsc(array) {
-    array.sort(function (a, b) {
-        return a[0] - b[0]
-    })
 }
 
 function floor(number, unit) {
